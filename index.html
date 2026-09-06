@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Christopher J. Williams — IAM Engineer and Security Consultant specializing in Privileged Access Management, Microsoft Entra ID, and AI-assisted identity automation." />
-  <title>CJWilliamsTech | Identity Security</title>
+  <meta name="description" content="CJ Williams — engineer who builds things. Professional focus on Identity & Access Management and Privileged Access Management, with a habit of tinkering: drones, AI vision, electronics, and RF." />
+  <title>CJWilliamsTech | Engineer & Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -320,6 +320,100 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
+    }
+
+    /* =============================================
+       HERO TERMINAL
+    ============================================= */
+    .hero-terminal {
+      max-width: 660px;
+      background: #0A121E;
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,194,203,0.04);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .term-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px;
+      background: #0E1826;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .term-dots { display: flex; gap: 7px; }
+    .term-dots i {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      display: block;
+    }
+    .term-dots i:nth-child(1) { background: #ff5f56; }
+    .term-dots i:nth-child(2) { background: #ffbd2e; }
+    .term-dots i:nth-child(3) { background: #27c93f; }
+
+    .term-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .term-body {
+      padding: 22px 22px 24px;
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--text-sub);
+      min-height: 322px;
+    }
+
+    .term-line { white-space: pre-wrap; word-break: break-word; }
+    .term-prompt { color: var(--teal); }
+    .term-cmd { color: var(--text); }
+    .term-out { color: var(--text-sub); }
+    .term-dir { color: #79c0ff; }
+
+    .term-cursor {
+      display: inline-block;
+      width: 9px;
+      height: 15px;
+      background: var(--teal);
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+    .term-cursor--blink { animation: termblink 1.1s steps(1) infinite; }
+    @keyframes termblink { 50% { opacity: 0; } }
+
+    .term-headline {
+      font-family: var(--display);
+      font-size: clamp(28px, 4.6vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 16px 0 4px;
+    }
+    .term-headline .accent { color: var(--teal); }
+
+    .term-art {
+      font-family: var(--mono);
+      color: var(--teal);
+      font-size: 12px;
+      line-height: 1.25;
+      margin: 6px 0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .term-wave { color: var(--teal); letter-spacing: 1px; }
+    .term-lock { color: var(--text-sub); }
+
+    @media (max-width: 768px) {
+      .term-body { font-size: 12.5px; min-height: 300px; padding: 18px; }
+      .term-title { font-size: 11px; }
+      .term-art { font-size: 10px; }
     }
 
     /* =============================================
@@ -923,11 +1017,11 @@
   <nav>
     <div class="nav-logo">CJ<span>.</span>Williams</div>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
+      <li><a href="#focus">Focus</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#build">Build</a></li>
       <li><a href="#certifications">Certs</a></li>
-      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      <li><a href="#contact" class="nav-cta">Say Hello</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -939,33 +1033,50 @@
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">
-          IAM Engineer &amp; Security Consultant
+        <div class="hero-terminal" aria-label="Terminal introduction">
+          <div class="term-bar">
+            <span class="term-dots"><i></i><i></i><i></i></span>
+            <span class="term-title">cj@cjwilliamstech: ~</span>
+          </div>
+          <div class="term-body" id="term-body">
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">whoami</span></div>
+            <div class="term-line term-out">cj.williams — engineer &amp; builder</div>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">cat focus.txt</span></div>
+            <div class="term-line term-out">Identity &amp; Access Management · Privileged Access Management</div>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">ls ~/projects/</span></div>
+            <div class="term-line term-out term-dir">drone-vision/   shortwave-radio/   entra-iam/   3d-printed-drone/</div>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">figlet cjwtech</span></div>
+            <pre class="term-art">   ___   ___      _______ ___ ___ _  _
+  / __| | \ \    / /_   _| __/ __| || |
+ | (_| || |\ \/\/ /  | | | _| (__| __ |
+  \___\__/  \_/\_/   |_| |___\___|_||_|</pre>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">sdr --scan 146.520MHz</span></div>
+            <div class="term-line term-out"><span class="term-wave">▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁</span>  <span class="term-lock">● signal locked</span></div>
+            <div class="term-line term-out">[ ham radio · engineer · builder ]</div>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">./introduce.sh</span></div>
+            <h1 class="term-headline">I build things. I secure <span class="accent">identity.</span></h1>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cursor term-cursor--blink"></span></div>
+          </div>
         </div>
-
-        <div class="availability">
-          <span class="avail-dot"></span>
-          Available for contract engagements
-        </div>
-
-        <h1 class="hero-title">
-          Identity Security<br />
-          Built to <span class="accent">Last.</span>
-        </h1>
 
         <p class="hero-desc">
-          I design, implement, and automate Identity and Access Management
-          infrastructure for organizations that can't afford to get it wrong.
-          Privileged access governance, Zero Trust architecture, and
-          AI-assisted identity workflows — built for the real world.
+          I'm an engineer at heart with a builder's instinct and an open-source
+          enthusiast. My professional focus is Identity &amp; Access Management
+          and Privileged Access Management.
+        </p>
+
+        <p class="hero-desc">
+          Off the clock, I like tinkering with RF, microcontrollers, embedded
+          systems, drones, OSINT, and all things Linux. As a licensed amateur
+          radio operator (Technician class), I spend time on the VHF/UHF bands.
         </p>
 
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary">
-            Work With Me →
+          <a href="#build" class="btn-primary">
+            See What I Build →
           </a>
-          <a href="#projects" class="btn-secondary">
-            View Projects
+          <a href="#focus" class="btn-secondary">
+            My Professional Focus
           </a>
         </div>
 
@@ -975,36 +1086,36 @@
             <div class="stat-label">Years in Enterprise IT</div>
           </div>
           <div>
-            <div class="stat-value">3<span>+</span></div>
-            <div class="stat-label">Years IAM Focused</div>
+            <div class="stat-value">IAM<span> /</span> PAM</div>
+            <div class="stat-label">Professional Focus</div>
           </div>
           <div>
             <div class="stat-value">2<span>×</span></div>
             <div class="stat-label">Microsoft Certified</div>
           </div>
           <div>
-            <div class="stat-value"><span>#</span>1</div>
-            <div class="stat-label">BeyondTrust PAM Cert</div>
+            <div class="stat-value"><span>∞</span></div>
+            <div class="stat-label">Projects on the Bench</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="services" class="section section--alt">
+  <!-- ============ PROFESSIONAL FOCUS ============ -->
+  <section id="focus" class="section section--alt">
     <div class="container">
       <div class="reveal">
-        <div class="eyebrow">What I Do</div>
-        <h2 class="section-title">IAM Services for<br />Organizations That Need It Done Right</h2>
-        <p class="section-sub">From PAM implementations to access governance, I bring enterprise-grade identity security to organizations of any size.</p>
+        <div class="eyebrow">Professional Focus</div>
+        <h2 class="section-title">Identity &amp; Access Management<br />is the Day Job</h2>
+        <p class="section-sub">This is where I go deep. A decade in enterprise IT, now concentrated on securing who can access what — and proving it. Here's the terrain I work in.</p>
       </div>
 
       <div class="services-grid">
         <div class="service-card reveal">
           <div class="service-icon">🔐</div>
           <div class="service-title">Privileged Access Management</div>
-          <div class="service-desc">Deploy and configure BeyondTrust Password Safe for your environment. Privileged account onboarding, credential vaulting, password rotation policies, and session governance built to audit requirements.</div>
+          <div class="service-desc">Deploying and configuring BeyondTrust Password Safe — privileged account onboarding, credential vaulting, password rotation policies, and session governance built to audit requirements.</div>
           <div class="service-tags">
             <span class="tag">BeyondTrust</span>
             <span class="tag">PAM</span>
@@ -1016,7 +1127,7 @@
         <div class="service-card reveal">
           <div class="service-icon">☁️</div>
           <div class="service-title">Entra ID & Hybrid Identity</div>
-          <div class="service-desc">Design and manage hybrid identity environments across Active Directory and Azure Entra ID. RBAC enforcement, Conditional Access policy design, MFA rollout, and SSO integrations done right the first time.</div>
+          <div class="service-desc">Managing hybrid identity across Active Directory and Azure Entra ID — RBAC enforcement, Conditional Access policy design, MFA rollout, and SSO integrations.</div>
           <div class="service-tags">
             <span class="tag">Azure Entra ID</span>
             <span class="tag">Active Directory</span>
@@ -1028,7 +1139,7 @@
         <div class="service-card reveal">
           <div class="service-icon">📋</div>
           <div class="service-title">IAM Audit & Assessment</div>
-          <div class="service-desc">A structured review of your current identity posture across five domains: identity lifecycle, privileged access, authentication, access governance, and monitoring. Scored findings with a clear remediation roadmap.</div>
+          <div class="service-desc">A structured review of identity posture across five domains: identity lifecycle, privileged access, authentication, access governance, and monitoring. Scored findings with a clear remediation roadmap.</div>
           <div class="service-tags">
             <span class="tag">Access Reviews</span>
             <span class="tag">Gap Analysis</span>
@@ -1081,46 +1192,46 @@
     <div class="container">
       <div class="reveal">
         <div class="eyebrow">About</div>
-        <h2 class="section-title">Enterprise Identity Experience.<br />Consultant Mindset.</h2>
+        <h2 class="section-title">An Engineer Who<br />Can't Stop Building.</h2>
       </div>
 
       <div class="about-grid">
         <div class="about-text reveal">
-          <p>I'm a BeyondTrust-certified IAM professional with hands-on experience managing enterprise identity infrastructure at a <strong>major utility company operating at enterprise scale</strong> — an environment where identity security isn't optional and the cost of getting it wrong is real.</p>
-          <p>My daily work spans privileged access management, hybrid identity lifecycle operations, and access governance across on-premises and cloud environments. I'm currently deepening my expertise in <strong>AI-assisted IAM automation</strong> — building intelligent workflows that go beyond scripting toward context-aware, insight-driven identity operations.</p>
-          <p>I work best with mid-size organizations, IT teams, and security-conscious businesses that need <strong>experienced IAM expertise without the overhead of a full-time hire</strong>. Available for remote contract engagements, fractional IAM advisory, and project-based implementations.</p>
+          <p>I'm the kind of person who has a project on the bench at all times. Right now it's a <strong>HackerBox shortwave radio build</strong> — ESP32-C3, RF, hand-assembled antennas, and a crash course in the black magic of the Smith Chart. It's a natural fit: I'm a <strong>licensed amateur radio operator (Technician class)</strong>, so the airwaves are already home turf. Before the radio it was drones. Next it'll be something else. I learn by taking things apart and putting them back together better.</p>
+          <p>Professionally, that same instinct is pointed at <strong>Identity &amp; Access Management</strong>. I'm a BeyondTrust-certified IAM engineer with hands-on experience running enterprise identity infrastructure at a <strong>major utility operating at scale</strong> — an environment where identity security isn't optional and getting it wrong has real consequences.</p>
+          <p>The two sides feed each other. The tinkering keeps me curious and unafraid of new hardware, new APIs, new problems. The IAM work keeps me disciplined about security, auditability, and doing things properly. Lately I've been merging them — building <strong>AI-assisted identity tooling</strong> and pointing <strong>AI vision at the things I fly</strong>.</p>
           <div style="margin-top: 28px;">
-            <a href="#contact" class="btn-primary">Start a Conversation →</a>
+            <a href="#build" class="btn-primary">See What I'm Building →</a>
           </div>
         </div>
 
         <div class="about-highlights reveal">
           <div class="highlight-item">
-            <div class="highlight-icon">🏭</div>
+            <div class="highlight-icon">🛠️</div>
             <div>
-              <div class="highlight-title">Critical Infrastructure Background</div>
-              <div class="highlight-desc">IAM experience in a regulated, high-stakes environment where audit requirements and compliance are non-negotiable. That discipline translates directly to client engagements.</div>
+              <div class="highlight-title">Builder by Default</div>
+              <div class="highlight-desc">Drones, AI vision, electronics, RF, home automation. If it can be built, taken apart, or automated, it's fair game. Hands-on hardware and software, not just theory.</div>
             </div>
           </div>
           <div class="highlight-item">
             <div class="highlight-icon">🎯</div>
             <div>
               <div class="highlight-title">BeyondTrust PAM Certified</div>
-              <div class="highlight-desc">One of the most in-demand IAM credentials in the market. Hands-on experience with Password Safe deployments, privileged account governance, and session recording.</div>
+              <div class="highlight-desc">One of the most in-demand IAM credentials in the market. Hands-on with Password Safe deployments, privileged account governance, and session recording.</div>
             </div>
           </div>
           <div class="highlight-item">
-            <div class="highlight-icon">🤖</div>
+            <div class="highlight-icon">🏭</div>
             <div>
-              <div class="highlight-title">Building Toward AI-Assisted IAM</div>
-              <div class="highlight-desc">Actively developing Azure OpenAI integrations with Microsoft Graph — building the next generation of identity workflows that reason about access data, not just process it.</div>
+              <div class="highlight-title">Critical Infrastructure Background</div>
+              <div class="highlight-desc">IAM experience in a regulated, high-stakes environment where audit requirements and compliance are non-negotiable — the kind of discipline that carries into everything I build.</div>
             </div>
           </div>
           <div class="highlight-item">
             <div class="highlight-icon">📍</div>
             <div>
-              <div class="highlight-title">Honolulu, Hawaii — Remote First</div>
-              <div class="highlight-desc">Based in Honolulu with a remote-first approach. Available for engagements across the US mainland, Pacific region, and internationally.</div>
+              <div class="highlight-title">Honolulu, Hawaii</div>
+              <div class="highlight-desc">Building from the middle of the Pacific — which is either the best or worst place to fly a drone over the ocean, depending on the day.</div>
             </div>
           </div>
         </div>
@@ -1128,23 +1239,25 @@
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
-  <section id="projects" class="section section--alt">
+  <!-- ============ BUILD ============ -->
+  <section id="build" class="section section--alt">
     <div class="container">
       <div class="reveal">
-        <div class="eyebrow">Projects</div>
-        <h2 class="section-title">What I'm Building</h2>
-        <p class="section-sub">Open-source IAM tooling, automation scripts, and AI-assisted identity workflows. All available on GitHub.</p>
+        <div class="eyebrow">Build</div>
+        <h2 class="section-title">Things I'm Building</h2>
+        <p class="section-sub">Two lanes, one habit. Identity &amp; security tooling on the professional side; hardware, drones, and AI experiments on the tinkering side. Some shipped, some on the bench.</p>
       </div>
 
-      <div class="projects-grid">
+      <!-- Lane 1: Identity & Security -->
+      <div class="eyebrow reveal" style="margin-top:56px;">Identity &amp; Security Tooling</div>
+      <div class="projects-grid" style="margin-top:24px;">
         <div class="project-card reveal">
           <div class="project-header">
             <div class="project-icon">⚙️</div>
             <a href="https://github.com/cjwilliamstech/entra-iam-scripts" target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
           </div>
           <div class="project-title">Entra ID IAM Automation Library</div>
-          <div class="project-desc">Production-ready PowerShell scripts for automating identity lifecycle operations using the Microsoft Graph SDK. Includes structured user provisioning, six-step offboarding, audit logging, and WhatIf dry-run support.</div>
+          <div class="project-desc">Production-ready PowerShell scripts for automating identity lifecycle operations using the Microsoft Graph SDK. Structured user provisioning, six-step offboarding, audit logging, and WhatIf dry-run support.</div>
           <div class="service-tags">
             <span class="tag">PowerShell</span>
             <span class="tag">Microsoft Graph</span>
@@ -1166,7 +1279,7 @@
             <span class="project-link">Coming Soon</span>
           </div>
           <div class="project-title">AI Access Review Summarizer</div>
-          <div class="project-desc">Pulls group membership data via Microsoft Graph, passes it through Azure OpenAI, and generates plain-English executive summaries for non-technical stakeholders. Turns access review data into actionable insight.</div>
+          <div class="project-desc">Pulls group membership data via Microsoft Graph, passes it through Azure OpenAI, and generates plain-English summaries of who has access to what. Turns access review data into something a human can actually read.</div>
           <div class="service-tags">
             <span class="tag">Azure OpenAI</span>
             <span class="tag">Microsoft Graph</span>
@@ -1203,8 +1316,78 @@
         </div>
       </div>
 
+      <!-- Lane 2: Things I Build (hardware / maker) -->
+      <div class="eyebrow reveal" style="margin-top:64px;">Hardware, Drones &amp; AI Experiments</div>
+      <div class="projects-grid" style="margin-top:24px;">
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">📻</div>
+            <a href="https://hackerboxes.com/collections/past-hackerboxes/products/hackerbox-0130-shortwave" target="_blank" rel="noopener" class="project-link">HackerBox ↗</a>
+          </div>
+          <div class="project-title">Shortwave Radio &amp; RF Build</div>
+          <div class="project-desc">HackerBox #0130. A quad-band single-chip receiver driven by an ESP32-C3, hand-assembled antennas (long-wire dipole, end-fed half-wave, amplified magnetic loop), and a deep dive into skywave propagation and the Smith Chart. Right in my wheelhouse as a licensed ham — learning RF from the solder up.</div>
+          <div class="service-tags">
+            <span class="tag">Amateur Radio</span>
+            <span class="tag">ESP32-C3</span>
+            <span class="tag">RF</span>
+            <span class="tag">Soldering</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-lang">
+              <div class="lang-dot" style="background:#E44D26;"></div>
+              Hardware
+            </div>
+            <span class="project-status status-building">On the Bench</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🐬</div>
+            <span class="project-link">Concept</span>
+          </div>
+          <div class="project-title">Marine-Life Spotter Drone</div>
+          <div class="project-desc">The flagship idea: a DIY drone that flies over the ocean and uses AI vision to identify marine life — sharks, dolphins, rays — in real time. Merging the two things I love, computer vision and things that fly, in the best possible test range: the Pacific.</div>
+          <div class="service-tags">
+            <span class="tag">AI Vision</span>
+            <span class="tag">Drones</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">DIY</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-lang">
+              <div class="lang-dot" style="background:#00C2CB;"></div>
+              AI + Hardware
+            </div>
+            <span class="project-status status-building">Concept</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🚁</div>
+            <span class="project-link">In Progress</span>
+          </div>
+          <div class="project-title">Open-Source 3D-Printed Drone</div>
+          <div class="project-desc">Building a drone from the frame up — 3D-printed parts, open-source flight firmware, and off-the-shelf electronics. The platform that the marine-life AI vision work will eventually fly on. Learning airframes, ESCs, and flight tuning by doing.</div>
+          <div class="service-tags">
+            <span class="tag">3D Printing</span>
+            <span class="tag">Drones</span>
+            <span class="tag">Open Source</span>
+            <span class="tag">Robotics</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-lang">
+              <div class="lang-dot" style="background:#A87FEE;"></div>
+              Hardware
+            </div>
+            <span class="project-status status-building">Building</span>
+          </div>
+        </div>
+      </div>
+
       <div style="text-align:center; margin-top:48px;">
-        <a href="https://github.com/cjwilliamstech" target="_blank" rel="noopener" class="btn-secondary">View All Projects on GitHub →</a>
+        <a href="https://github.com/cjwilliamstech" target="_blank" rel="noopener" class="btn-secondary">More on GitHub →</a>
       </div>
     </div>
   </section>
@@ -1219,6 +1402,11 @@
       </div>
 
       <div class="certs-grid">
+        <div class="cert-card earned reveal">
+          <div class="cert-issuer">FCC</div>
+          <div class="cert-name">Amateur Radio License — Technician Class</div>
+          <div class="cert-meta">Active · Licensed Ham</div>
+        </div>
         <div class="cert-card earned reveal">
           <div class="cert-issuer">BeyondTrust</div>
           <div class="cert-name">Certified Password Safe Administrator</div>
@@ -1297,13 +1485,13 @@
     <div class="container">
       <div class="reveal">
         <div class="eyebrow">Contact</div>
-        <h2 class="section-title">Let's Talk About<br />Your Identity Challenges</h2>
+        <h2 class="section-title">Say Hello</h2>
       </div>
 
       <div class="contact-wrapper">
         <div class="contact-info reveal">
-          <p>Whether you need a BeyondTrust implementation, an Entra ID architecture review, IAM automation scripting, or ongoing fractional IAM advisory — I'd like to hear what you're working on.</p>
-          <p>I typically respond within one business day.</p>
+          <p>Want to talk identity security, compare notes on a drone build, or just say hi? I'm always up for a good conversation with people who build things.</p>
+          <p>I usually reply within a day or so.</p>
 
           <div class="contact-links">
             <a href="mailto:cw@cjwilliamstech.com" class="contact-link">
@@ -1327,13 +1515,6 @@
                 <span class="contact-link-value">github.com/cjwilliamstech</span>
               </div>
             </a>
-            <a href="https://www.upwork.com" target="_blank" rel="noopener" class="contact-link">
-              <span class="contact-link-icon">🔗</span>
-              <div>
-                <span class="contact-link-label">Upwork</span>
-                <span class="contact-link-value">Available for contract engagements</span>
-              </div>
-            </a>
           </div>
         </div>
 
@@ -1347,12 +1528,12 @@
             <input class="form-input" type="email" id="email" placeholder="jane@company.com" />
           </div>
           <div class="form-group">
-            <label class="form-label" for="company">Company / Organization</label>
-            <input class="form-input" type="text" id="company" placeholder="Acme Corp" />
+            <label class="form-label" for="company">Company / Org (optional)</label>
+            <input class="form-input" type="text" id="company" placeholder="If it's relevant" />
           </div>
           <div class="form-group">
-            <label class="form-label" for="message">What are you working on?</label>
-            <textarea class="form-textarea" id="message" placeholder="Tell me about your IAM challenge or project..."></textarea>
+            <label class="form-label" for="message">Your Message</label>
+            <textarea class="form-textarea" id="message" placeholder="What's on your mind? Identity, drones, a project idea, anything..."></textarea>
           </div>
           <button class="btn-primary" style="width:100%; justify-content:center;" onclick="handleSubmit()">
             Send Message →
@@ -1374,6 +1555,109 @@
 
   <!-- ============ SCRIPTS ============ -->
   <script>
+    /* ----- Hero Terminal: typing boot sequence ----- */
+    (function () {
+      const body = document.getElementById('term-body');
+      if (!body) return;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Reduced motion / no animation: leave the static content in place.
+      if (reduce) return;
+
+      const PROMPT = 'cj@cjwilliamstech:~$';
+
+      // Script of the "session". type = a typed command, out = printed output,
+      // head = the big headline, done = final blinking prompt.
+      const steps = [
+        { type: 'cmd',  text: 'whoami' },
+        { type: 'out',  html: 'cj.williams — engineer &amp; builder' },
+        { type: 'cmd',  text: 'cat focus.txt' },
+        { type: 'out',  html: 'Identity &amp; Access Management · Privileged Access Management' },
+        { type: 'cmd',  text: 'ls ~/projects/' },
+        { type: 'out',  html: '<span class="term-dir">drone-vision/   shortwave-radio/   entra-iam/   3d-printed-drone/</span>' },
+        { type: 'cmd',  text: 'figlet cjwtech' },
+        { type: 'art',  html: '   ___   ___      _______ ___ ___ _  _\n  / __| | \\ \\    / /_   _| __/ __| || |\n | (_| || |\\ \\/\\/ /  | | | _| (__| __ |\n  \\___\\__/  \\_/\\_/   |_| |___\\___|_||_|' },
+        { type: 'cmd',  text: 'sdr --scan 146.520MHz' },
+        { type: 'out',  html: '<span class="term-wave">▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁</span>  <span class="term-lock">● signal locked</span>' },
+        { type: 'out',  html: '[ ham radio · engineer · builder ]' },
+        { type: 'cmd',  text: './introduce.sh' },
+        { type: 'head' },
+        { type: 'done' }
+      ];
+
+      body.innerHTML = '';
+
+      const line = (cls) => {
+        const d = document.createElement('div');
+        d.className = 'term-line' + (cls ? ' ' + cls : '');
+        body.appendChild(d);
+        return d;
+      };
+      const cursor = (blink) =>
+        '<span class="term-cursor' + (blink ? ' term-cursor--blink' : '') + '"></span>';
+      const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+      async function typeCmd(text) {
+        const el = line();
+        for (let i = 0; i <= text.length; i++) {
+          el.innerHTML = '<span class="term-prompt">' + PROMPT + '</span> ' +
+            '<span class="term-cmd">' + text.slice(0, i) + '</span>' + cursor(false);
+          await wait(38 + Math.random() * 45);
+        }
+        el.innerHTML = '<span class="term-prompt">' + PROMPT + '</span> ' +
+          '<span class="term-cmd">' + text + '</span>';
+        await wait(260);
+      }
+
+      async function printOut(html) {
+        const el = line('term-out');
+        el.innerHTML = html;
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.18s';
+        requestAnimationFrame(() => { el.style.opacity = '1'; });
+        await wait(360);
+      }
+
+      async function printArt(text) {
+        const el = document.createElement('pre');
+        el.className = 'term-art';
+        el.textContent = text;
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.32s';
+        body.appendChild(el);
+        requestAnimationFrame(() => { el.style.opacity = '1'; });
+        await wait(480);
+      }
+
+      async function showHead() {
+        const h = document.createElement('h1');
+        h.className = 'term-headline';
+        h.innerHTML = 'I build things. I secure <span class="accent">identity.</span>';
+        h.style.opacity = '0';
+        h.style.transform = 'translateY(6px)';
+        h.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        body.appendChild(h);
+        requestAnimationFrame(() => { h.style.opacity = '1'; h.style.transform = 'none'; });
+        await wait(520);
+      }
+
+      function showDone() {
+        const el = line();
+        el.innerHTML = '<span class="term-prompt">' + PROMPT + '</span> ' + cursor(true);
+      }
+
+      (async function run() {
+        await wait(450);
+        for (const s of steps) {
+          if (s.type === 'cmd')  await typeCmd(s.text);
+          else if (s.type === 'out')  await printOut(s.html);
+          else if (s.type === 'art')  await printArt(s.html);
+          else if (s.type === 'head') await showHead();
+          else if (s.type === 'done') showDone();
+        }
+      })();
+    })();
+
     /* ----- Hero Canvas: IAM Node Graph ----- */
     const canvas = document.getElementById('hero-canvas');
     const ctx    = canvas.getContext('2d');
@@ -1480,7 +1764,7 @@
         return;
       }
       window.location.href =
-        `mailto:cw@cjwilliamstech.com?subject=Consulting Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
+        `mailto:cw@cjwilliamstech.com?subject=Hello from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
     }
 
     /* ----- Mobile nav ----- */

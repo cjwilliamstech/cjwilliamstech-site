@@ -1050,11 +1050,12 @@
   / __| | \ \    / /_   _| __/ __| || |
  | (_| || |\ \/\/ /  | | | _| (__| __ |
   \___\__/  \_/\_/   |_| |___\___|_||_|</pre>
-            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">sdr --scan 146.520MHz</span></div>
-            <div class="term-line term-out"><span class="term-wave">▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁</span>  <span class="term-lock">● signal locked</span></div>
+            <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">sdr --scan 146.530MHz</span></div>
+            <div class="term-line term-out"><span class="term-lock">● signal locked</span></div>
+            <div class="term-line term-out"><span class="term-wave">▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁▂</span></div>
             <div class="term-line term-out">[ ham radio · engineer · builder ]</div>
             <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cmd">./introduce.sh</span></div>
-            <h1 class="term-headline">I build things. I secure <span class="accent">identity.</span></h1>
+            <h1 class="term-headline">Let's build something <span class="accent">together.</span></h1>
             <div class="term-line"><span class="term-prompt">cj@cjwilliamstech:~$</span> <span class="term-cursor term-cursor--blink"></span></div>
           </div>
         </div>
@@ -1107,8 +1108,8 @@
     <div class="container">
       <div class="reveal">
         <div class="eyebrow">Professional Focus</div>
-        <h2 class="section-title">Identity &amp; Access Management<br />is the Day Job</h2>
-        <p class="section-sub">This is where I go deep. A decade in enterprise IT, now concentrated on securing who can access what — and proving it. Here's the terrain I work in.</p>
+        <h2 class="section-title">Identity &amp; Access Management<br />is my day job</h2>
+        <p class="section-sub">I work to be a sharp, dependable IAM and PAM engineer. In modern security, identity has become the new perimeter — the boundary moved from the network edge to who you are and what you can reach. Securing identities isn't a checkbox; it's the front line, and it's where I focus.</p>
       </div>
 
       <div class="services-grid">
@@ -1192,7 +1193,7 @@
     <div class="container">
       <div class="reveal">
         <div class="eyebrow">About</div>
-        <h2 class="section-title">An Engineer Who<br />Can't Stop Building.</h2>
+        <h2 class="section-title">I'm an engineer at heart,<br />who loves to build things.</h2>
       </div>
 
       <div class="about-grid">
@@ -1423,14 +1424,19 @@
           <div class="cert-meta">In Progress · 2026</div>
         </div>
         <div class="cert-card progress reveal">
+          <div class="cert-issuer">TCM Security</div>
+          <div class="cert-name">Practical OSINT Research Professional (PORP)</div>
+          <div class="cert-meta">In Progress · Q1 2027</div>
+        </div>
+        <div class="cert-card progress reveal">
           <div class="cert-issuer">Okta</div>
           <div class="cert-name">Okta Certified Professional</div>
-          <div class="cert-meta">Planned · Q3 2026</div>
+          <div class="cert-meta">Planned · Q1 2027</div>
         </div>
         <div class="cert-card progress reveal">
           <div class="cert-issuer">Microsoft</div>
           <div class="cert-name">AZ-500: Azure Security Engineer Associate</div>
-          <div class="cert-meta">Planned · Q4 2026</div>
+          <div class="cert-meta">Planned · Q2 2027</div>
         </div>
         <div class="cert-card progress reveal">
           <div class="cert-issuer">(ISC)²</div>
@@ -1577,8 +1583,9 @@
         { type: 'out',  html: '<span class="term-dir">drone-vision/   shortwave-radio/   entra-iam/   3d-printed-drone/</span>' },
         { type: 'cmd',  text: 'figlet cjwtech' },
         { type: 'art',  html: '   ___   ___      _______ ___ ___ _  _\n  / __| | \\ \\    / /_   _| __/ __| || |\n | (_| || |\\ \\/\\/ /  | | | _| (__| __ |\n  \\___\\__/  \\_/\\_/   |_| |___\\___|_||_|' },
-        { type: 'cmd',  text: 'sdr --scan 146.520MHz' },
-        { type: 'out',  html: '<span class="term-wave">▁▂▃▅▇█▇▅▃▂▁▂▃▅▇█▇▅▃▂▁</span>  <span class="term-lock">● signal locked</span>' },
+        { type: 'cmd',  text: 'sdr --scan 146.530MHz' },
+        { type: 'out',  html: '<span class="term-lock">● signal locked</span>' },
+        { type: 'wave' },
         { type: 'out',  html: '[ ham radio · engineer · builder ]' },
         { type: 'cmd',  text: './introduce.sh' },
         { type: 'head' },
@@ -1629,10 +1636,37 @@
         await wait(480);
       }
 
+      async function printWave() {
+        const GLYPHS = '▁▂▃▄▅▆▇█';
+        const COLS = 32;
+        const el = line('term-out');
+        el.innerHTML = '<span class="term-wave"></span>';
+        const span = el.firstChild;
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.18s';
+        requestAnimationFrame(() => { el.style.opacity = '1'; });
+
+        let t = 0;
+        (function animate() {
+          let s = '';
+          for (let x = 0; x < COLS; x++) {
+            // two summed sine waves scrolling at different rates -> lively SDR trace
+            const v = Math.sin(x * 0.45 + t) * 0.6 + Math.sin(x * 0.17 - t * 1.7) * 0.4;
+            const idx = Math.round((v + 1) / 2 * (GLYPHS.length - 1));
+            s += GLYPHS[Math.max(0, Math.min(GLYPHS.length - 1, idx))];
+          }
+          span.textContent = s;
+          t += 0.22;
+          requestAnimationFrame(animate);
+        })();
+
+        await wait(480);
+      }
+
       async function showHead() {
         const h = document.createElement('h1');
         h.className = 'term-headline';
-        h.innerHTML = 'I build things. I secure <span class="accent">identity.</span>';
+        h.innerHTML = 'Let\'s build something <span class="accent">together.</span>';
         h.style.opacity = '0';
         h.style.transform = 'translateY(6px)';
         h.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1652,6 +1686,7 @@
           if (s.type === 'cmd')  await typeCmd(s.text);
           else if (s.type === 'out')  await printOut(s.html);
           else if (s.type === 'art')  await printArt(s.html);
+          else if (s.type === 'wave') await printWave();
           else if (s.type === 'head') await showHead();
           else if (s.type === 'done') showDone();
         }

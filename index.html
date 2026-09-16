@@ -738,6 +738,67 @@
       color: var(--text-muted);
     }
 
+    /* Featured verifiable badge (Credly) */
+    .badge-feature {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 48px;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .badge-feature__img {
+      flex-shrink: 0;
+      width: 132px;
+      height: 132px;
+      transition: transform 0.25s ease;
+    }
+    .badge-feature__img img { width: 100%; height: 100%; }
+    .badge-feature__link:hover .badge-feature__img { transform: scale(1.04); }
+
+    .badge-feature__body { display: flex; flex-direction: column; gap: 8px; }
+
+    .badge-feature__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .badge-feature__title {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .badge-feature__meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .badge-feature__verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--teal);
+    }
+    .badge-feature__verify::after { content: '↗'; font-size: 13px; }
+
+    @media (max-width: 560px) {
+      .badge-feature { flex-direction: column; text-align: center; align-items: center; }
+      .badge-feature__body { align-items: center; }
+    }
+
     /* =============================================
        TECH STACK
     ============================================= */
@@ -1402,6 +1463,20 @@
         <p class="section-sub">Current certifications and the planned path toward IAM architect-level credentials.</p>
       </div>
 
+      <div class="badge-feature reveal">
+        <a class="badge-feature__link" href="https://www.credly.com/badges/6a9254f8-fe80-42ac-a353-f09c265a3ff5/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify BeyondTrust Certified Administrator - Password Safe badge on Credly">
+          <div class="badge-feature__img">
+            <img src="badge-beyondtrust-password-safe.png" alt="BeyondTrust Certified Administrator - Password Safe badge" width="132" height="132" loading="lazy" />
+          </div>
+        </a>
+        <div class="badge-feature__body">
+          <div class="badge-feature__label">Verified Credential</div>
+          <div class="badge-feature__title">BeyondTrust Certified Administrator — Password Safe</div>
+          <div class="badge-feature__meta">Issued by BeyondTrust · Privileged Access Management</div>
+          <a class="badge-feature__verify" href="https://www.credly.com/badges/6a9254f8-fe80-42ac-a353-f09c265a3ff5/public_url" target="_blank" rel="noopener noreferrer">Verify on Credly</a>
+        </div>
+      </div>
+
       <div class="certs-grid">
         <div class="cert-card earned reveal">
           <div class="cert-issuer">FCC</div>
@@ -1410,7 +1485,7 @@
         </div>
         <div class="cert-card earned reveal">
           <div class="cert-issuer">BeyondTrust</div>
-          <div class="cert-name">Certified Password Safe Administrator</div>
+          <div class="cert-name">Certified Administrator — Password Safe</div>
           <div class="cert-meta">Active · PAM Vendor Certification</div>
         </div>
         <div class="cert-card earned reveal">

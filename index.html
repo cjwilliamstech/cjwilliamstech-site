@@ -1589,27 +1589,33 @@
           </div>
         </div>
 
-        <div class="contact-form reveal">
+        <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="5b3278ae-b6ff-4ae9-911a-a5c020340d40" />
+          <input type="hidden" name="subject" value="New message from cjwilliamstech.com" />
+          <input type="hidden" name="from_name" value="CJWilliamsTech Site" />
+          <!-- Honeypot: bots fill this, humans never see it -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off" />
           <div class="form-group">
             <label class="form-label" for="name">Your Name</label>
-            <input class="form-input" type="text" id="name" placeholder="Jane Smith" />
+            <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required />
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Email Address</label>
-            <input class="form-input" type="email" id="email" placeholder="jane@company.com" />
+            <input class="form-input" type="email" id="email" name="email" placeholder="jane@company.com" required />
           </div>
           <div class="form-group">
             <label class="form-label" for="company">Company / Org (optional)</label>
-            <input class="form-input" type="text" id="company" placeholder="If it's relevant" />
+            <input class="form-input" type="text" id="company" name="company" placeholder="If it's relevant" />
           </div>
           <div class="form-group">
             <label class="form-label" for="message">Your Message</label>
-            <textarea class="form-textarea" id="message" placeholder="What's on your mind? Identity, drones, a project idea, anything..."></textarea>
+            <textarea class="form-textarea" id="message" name="message" placeholder="What's on your mind? Identity, drones, a project idea, anything..." required></textarea>
           </div>
-          <button class="btn-primary" style="width:100%; justify-content:center;" onclick="handleSubmit()">
+          <button class="btn-primary" type="submit" style="width:100%; justify-content:center;">
             Send Message →
           </button>
-        </div>
+          <div id="form-status" style="margin-top:16px; text-align:center; font-size:0.95rem; min-height:1.2em;"></div>
+        </form>
       </div>
     </div>
   </section>
@@ -1854,18 +1860,50 @@
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
 
-    /* ----- Contact form handler ----- */
-    function handleSubmit() {
-      const name    = document.getElementById('name').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if (!name || !email || !message) {
-        alert('Please fill in your name, email, and message.');
-        return;
-      }
-      window.location.href =
-        `mailto:cw@cjwilliamstech.com?subject=Hello from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
-    }
+    /* ----- Contact form handler (Web3Forms) ----- */
+    (function () {
+      const form   = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      if (!form) return;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.textContent;
+
+        status.style.color = '#8A9BB0';
+        status.textContent = 'Sending…';
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        btn.textContent = 'Sending…';
+
+        try {
+          const data = Object.fromEntries(new FormData(form).entries());
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json();
+
+          if (res.ok && json.success) {
+            form.reset();
+            status.style.color = '#4ADE80';
+            status.textContent = 'Thanks! Your message is on its way. I\'ll be in touch soon.';
+          } else {
+            status.style.color = '#F87171';
+            status.textContent = (json && json.message) ? json.message : 'Something went wrong. Please email cw@cjwilliamstech.com directly.';
+          }
+        } catch (err) {
+          status.style.color = '#F87171';
+          status.textContent = 'Network error. Please email cw@cjwilliamstech.com directly.';
+        } finally {
+          btn.disabled = false;
+          btn.style.opacity = '';
+          btn.textContent = originalBtnText;
+        }
+      });
+    })();
 
     /* ----- Mobile nav ----- */
     document.querySelector('.nav-toggle').addEventListener('click', function() {
